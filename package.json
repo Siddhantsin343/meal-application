@@ -1,0 +1,22 @@
+{
+  "name": "meal-application",
+  "version": "1.0.0",
+  "description": "react project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "route"
+  ],
+  "author": "siddhant",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.16.1"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
