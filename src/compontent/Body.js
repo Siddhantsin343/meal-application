@@ -30,7 +30,15 @@ const Body = () => {
     </div>
 
       {/* Card */}
-      <div className="flex justify-center">
+      <div className="flex justify-center flex-wrap gap-6  mt-10">
+        <Card/>
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
         <Card />
       </div>
     </div>
