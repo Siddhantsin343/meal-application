@@ -5,6 +5,7 @@ const Body = () => {
   const [listOfHotel, setListOfRes] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [btn, setBtn] = useState("filter by time");
+  const [searchText, setSearchText] = useState(""); // ✅ added
 
   useEffect(() => {
     fetchRes();
@@ -17,36 +18,54 @@ const Body = () => {
     setFilteredList(json); // initially show all
   };
 
-  // Filter Btn Logic !
+  // 🔍 Search Logic
+  const handleSearch = () => {
+    if (searchText.trim() === "") {
+      setFilteredList(listOfHotel); // if empty, show all
+      return;
+    }
+
+    const filtered = listOfHotel.filter((res) =>
+      res.resName.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredList(filtered);
+  };
+
+  // ⏱ Filter Logic
   const handleFilter = () => {
     if (btn === "filter by time") {
       const filtered = listOfHotel.filter(({ eta }) => {
-        const time = parseInt(eta); // convert "27 mins" → 27
+        const time = parseInt(eta);
         return time <= 18;
       });
       setFilteredList(filtered);
       setBtn("reset");
     } else {
-      // 🔁 Reset to show all
       setFilteredList(listOfHotel);
       setBtn("filter by time");
     }
   };
+
   return (
     <div className="min-h-screen bg-gray-200 px-4 py-6">
-      {/* Search Box */}
+      {/* 🔍 Search Box */}
       <div className="flex justify-center items-center gap-2 mb-6">
         <input
           type="text"
           placeholder="Search..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)} // ✅ updates state
           className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400"
         />
-        <button className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+        <button
+          onClick={handleSearch}
+          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+        >
           Search
         </button>
       </div>
 
-      {/* Filter Button */}
+      {/* ⏱ Filter Button */}
       <div className="flex justify-center mb-6">
         <button
           onClick={handleFilter}
@@ -60,16 +79,18 @@ const Body = () => {
         </button>
       </div>
 
-      {/* Restaurants List */}
+      {/* 🍽️ Restaurants List */}
       <div className="text-3xl text-center mb-4">
         <h2>All Restaurants 🥗</h2>
       </div>
 
-      {/* Cards */}
+      {/* 📦 Cards */}
       <div className="flex justify-center flex-wrap gap-6 mt-10">
-        {filteredList.map((res) => (
-          <Card key={res.id} Hot={res} />
-        ))}
+        {filteredList.length > 0 ? (
+          filteredList.map((res) => <Card key={res.id} Hot={res} />)
+        ) : (
+          <p className="text-gray-600 text-lg">No restaurants found 😢</p>
+        )}
       </div>
     </div>
   );
