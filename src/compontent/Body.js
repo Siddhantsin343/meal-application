@@ -3,6 +3,7 @@ import Card from "./Card";
 
 const Body = () => {
   const [listOfHotel, setListOfRes] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   useEffect(() => {
     fetchRes();
@@ -11,8 +12,8 @@ const Body = () => {
   const fetchRes = async () => {
     const data = await fetch("http://localhost:3000/restaurants");
     const json = await data.json();
-    console.log(json);
     setListOfRes(json);
+    setFilteredList(json); // initially show all
   };
 
   return (
@@ -31,7 +32,17 @@ const Body = () => {
 
       {/* Filter Button */}
       <div className="flex justify-center mb-6">
-        <button className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+        <button
+          onClick={()=>{
+            const filteredList = listOfHotel.filter(({eta}) => {
+              // HERE
+                const time = parseInt(eta)
+                return time <= 18
+            });
+            setFilteredList(filteredList)
+          }}
+          className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
+        >
           Filter by time
         </button>
       </div>
@@ -43,7 +54,7 @@ const Body = () => {
 
       {/* Cards */}
       <div className="flex justify-center flex-wrap gap-6 mt-10">
-        {listOfHotel.map((res) => (
+        {filteredList.map((res) => (
           <Card key={res.id} Hot={res} />
         ))}
       </div>

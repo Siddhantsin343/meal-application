@@ -2,7 +2,7 @@ const Card = ({Hot})=>{
   const{resName , cuisine, eta, rating, image} = Hot
 
     return  (
-    <div className="max-w-sm w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+    <div className="max-w-sm w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 cursor-pointer">
       <img
         src={image}
         alt="imagge"
