@@ -1,6 +1,10 @@
+import { useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 
 const Header = () => {
+
+  const[logBtn, setLogBtn]=useState("login")
+
   return (
     <header className="flex items-center justify-between px-4 py-2 border-b shadow-md bg-white">
       {/* Logo */}
@@ -20,8 +24,12 @@ const Header = () => {
           <li className="hover:text-green-500 cursor-pointer transition">Contact Us</li>
           <li className="hover:text-green-500 cursor-pointer transition">Cart</li>
         </ul>
-        <button className="ml-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition">
-          Login
+
+        {/* Login Btn */}
+        <button className=" login ml-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition" onClick={()=>{
+           logBtn === "login" ? setLogBtn("logout") : setLogBtn("login")
+        }}>
+          {logBtn}
         </button>
       </nav>
 
