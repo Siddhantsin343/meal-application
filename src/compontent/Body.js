@@ -59,7 +59,7 @@ const Body = () => {
         />
         <button
           onClick={handleSearch}
-          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+          className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition cursor-pointer"
         >
           Search
         </button>
@@ -69,7 +69,7 @@ const Body = () => {
       <div className="flex justify-center mb-6">
         <button
           onClick={handleFilter}
-          className={`px-4 py-2 text-white rounded-md transition ${
+          className={`px-4 py-2 text-white rounded-md transition cursor-pointer ${
             btn === "filter by time"
               ? "bg-red-500 hover:bg-red-600"
               : "bg-blue-500 hover:bg-blue-600"
