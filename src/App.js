@@ -14,6 +14,7 @@ import Footer from "./compontent/Footer";
 import About from "./compontent/About";
 import Contact from "./compontent/Contact";
 import Error from "./compontent/Error";
+import RestaurantMenu from "./compontent/RestaurentMenu";
 
 
 
@@ -42,12 +43,7 @@ const appRoute = createBrowserRouter([
             {
                 path: "/contact",
                 element:<Contact/>
-            },
-            {
-                path:"/restaurant/:id",
-                element:<RestaurentMenu/>
             }
-            
         ],
         errorElement: <Error/>
     }
