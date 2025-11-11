@@ -1,9 +1,22 @@
+import { useState, useEffect } from "react";
 import Card from "./Card";
 
 const Body = () => {
+  const [listOfHotel, setListOfRes] = useState([]);
+
+  useEffect(() => {
+    fetchRes();
+  }, []);
+
+  const fetchRes = async () => {
+    const data = await fetch("http://localhost:3000/restaurants");
+    const json = await data.json();
+    console.log(json);
+    setListOfRes(json);
+  };
+
   return (
     <div className="min-h-screen bg-gray-200 px-4 py-6">
-      
       {/* Search Box */}
       <div className="flex justify-center items-center gap-2 mb-6">
         <input
@@ -23,23 +36,16 @@ const Body = () => {
         </button>
       </div>
 
+      {/* Restaurants List */}
+      <div className="text-3xl text-center mb-4">
+        <h2>All Restaurants 🥗</h2>
+      </div>
 
-    {/* Restaurents List */}
-    <div className="text-3xl text-center">
-        <h2>All Restaurents 🥗</h2>
-    </div>
-
-      {/* Card */}
-      <div className="flex justify-center flex-wrap gap-6  mt-10">
-        <Card/>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      {/* Cards */}
+      <div className="flex justify-center flex-wrap gap-6 mt-10">
+        {listOfHotel.map((res) => (
+          <Card key={res.id} Hot={res} />
+        ))}
       </div>
     </div>
   );
