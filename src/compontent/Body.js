@@ -1,4 +1,10 @@
 import { useState, useEffect } from "react";
+
+
+//page Compontent
+import About from "./About";
+import Contact from "./Contact";
+
 import Card from "./Card";
 
 const Body = () => {

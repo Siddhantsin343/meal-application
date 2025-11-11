@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { LOGO_URL } from "../utils/constant";
+// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -19,9 +21,9 @@ const Header = () => {
       {/* Navigation */}
       <nav className="hidden md:flex flex-1 justify-end items-center space-x-6">
         <ul className="flex space-x-4 text-gray-700 font-medium">
-          <li className="hover:text-green-500 cursor-pointer transition">Home</li>
-          <li className="hover:text-green-500 cursor-pointer transition">About Us</li>
-          <li className="hover:text-green-500 cursor-pointer transition">Contact Us</li>
+          <li className="hover:text-green-500 cursor-pointer transition"><Link to={"/"}>Home</Link></li>
+          <li className="hover:text-green-500 cursor-pointer transition"><Link to={"/about"}>About Us</Link></li>
+          <li className="hover:text-green-500 cursor-pointer transition"><Link to={"/contact"}>Contact Us</Link></li>
           <li className="hover:text-green-500 cursor-pointer transition">Cart</li>
         </ul>
 
