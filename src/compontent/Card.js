@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Card = ({Hot})=>{
-  const{resName , cuisine, eta, rating, image} = Hot
+  const{id, resName , cuisine, eta, rating, image} = Hot
 
     return  (
+      <Link to={`/restaurant/${id}`}>     
     <div className="max-w-sm w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 cursor-pointer">
       <img
         src={image}
@@ -21,6 +24,7 @@ const Card = ({Hot})=>{
         </div>
       </div>
     </div>
+     </Link>
   );
 };
 
