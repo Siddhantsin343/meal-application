@@ -6,6 +6,7 @@ const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchMenu = async () => {
       try {
